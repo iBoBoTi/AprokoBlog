@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
+{% block title %}
+    home
+{% endblock %}
 
 {% block content %}
-<h1>Aproko Blog</h1>
-<div>
-    <a href="" class="waves-effect waves-light btn">SignUp</a>
-    <a href="" class="waves-effect waves-light btn">Login</a>
-    <a href="" class="waves-effect waves-light btn">Visitor</a>
-</div>
+    <h1>Aproko Blog</h1>
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}
+        <p><a href="{% url 'logout' %}" class="waves-effect waves-light btn red accent-4">Log Out</a></p>
+    {% else %}
+        <a href="{% url 'login' %}" class="waves-effect waves-light btn">Login</a>
+        <a href="{% url 'signup' %}" class="waves-effect waves-light btn">Sign Up</a>
+        <a href="" class="waves-effect waves-light btn">Visitor</a>
+    {% endif %}
 {% endblock %}
